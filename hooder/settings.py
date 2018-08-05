@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',
     'hood',
-    'djgeojson',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '1018.laflare@gmail.com'
+EMAIL_HOST_PASSWORD = 'Laflare1020'
+EMAIL_PORT = 587
