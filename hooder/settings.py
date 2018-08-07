@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hood',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = '1018.laflare@gmail.com'
 EMAIL_HOST_PASSWORD = 'Laflare1020'
 EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
