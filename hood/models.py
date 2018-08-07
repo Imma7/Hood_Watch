@@ -2,16 +2,27 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime as dt
 
 # Create your models here.
 class NeighbourHood(models.Model):
     neighbourhood_name = models.CharField(max_length = 50, null=True, blank=False)
     neighbourhood_location = models.CharField(max_length = 50, null=True, blank=False)
-    occupants = models.IntegerField(null=True, blank=False)
+    occupants = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, null=True, blank=False)
 
     def __str__(self):
         return self.neighbourhood_name
+
+    @classmethod
+    def all_neighbourhoods(cls):
+        all_hoods = cls.objects.all()
+        return all_hoods
+
+    @classmethod
+    def specific_neighbourhood(cls, neighbourhood_id):
+        specific_hood = cls.objects.filter(id = neighbourhood_id)
+        return specific_hood
 
 class Profile(models.Model):
     username = models.CharField(max_length = 50, null=True, blank=False)
@@ -23,11 +34,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.username
 
-@receiver(post_save, sender = User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
+
 
 class Business(models.Model):
     business_name = models.CharField(max_length = 50)
