@@ -24,7 +24,10 @@ def hood(request, id):
     hoods = NeighbourHood.objects.get(id=id)
     return render(request, 'hood.html', locals())
 
-
+def business(request, neighbourhood_id):
+    date = dt.date.today()
+    business = Business.objects.get(id = neighbourhood_id)
+    return render(request, 'hood.html', locals)
 
 
 def search_results(request):
