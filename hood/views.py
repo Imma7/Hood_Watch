@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from .forms import SIgnUpForm
+from .forms import NeighbourHoodForm, BusinessForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -26,8 +26,10 @@ def hood(request, id):
 
 def business(request, neighbourhood_id):
     date = dt.date.today()
-    business = Business.objects.get(id = neighbourhood_id)
-    return render(request, 'hood.html', locals)
+    print(date)
+    bs = Business.objects.get(neighbourhood_id=neighbourhood_id)
+    print(bs)
+    return render(request, 'hood.html', locals())
 
 
 def search_results(request):
