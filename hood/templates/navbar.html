@@ -15,9 +15,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+
             </button>
-            <a class="navbar-brand" href="{% url 'index' %}">BOOK METADATA</a>
+            <a class="navbar-brand" href="{% url 'index' %}">HOOD WATCH</a>
         </div>
+
+        <!-- Adding a search form  -->
+      <div class="col-md-4 col-sm-4 navbar-right">
+
+            <form class="navbar-form" role="search">
+    
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Article" name="article">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+    
+            </form>
+        </div>
+        <!-- search form end -->
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
