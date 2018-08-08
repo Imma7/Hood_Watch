@@ -11,8 +11,28 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 import datetime as dt
+from .models import NeighbourHood, Profile, Business
 
 # Create your views here.
 def index(request):
     date = dt.date.today()
-    return render(request, 'index.html', {'date':date})
+    hoods = NeighbourHood.all_neighbourhoods()
+    return render(request, 'index.html', locals())
+
+def hood(request, id):
+    date = dt.date.today()
+    hoods = NeighbourHood.objects.get(id=id)
+    return render(request, 'hood.html', locals())
+
+
+
+
+def search_results(request):
+  if 'hood' in request.GET and request.GET["hood"]:
+    search_term = request.GET.get("hood")
+    searched_hood = NeighbourHood.search_business(search_term)
+    message = f"{search_term}"
+    return render(request, 'search.html', {"message": message, "businesses": searched_hood})
+  else:
+    message = "You haven't searched for any term"
+    return render(request, 'search.html', {"message": message})
