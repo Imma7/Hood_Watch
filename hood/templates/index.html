@@ -11,7 +11,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-    I AM
+    {% for hood in hoods %}
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-4"><hr></div>
+            <div class="col-md-4">
+                <h2 class="text-center"> {{ hood.neighbourhood_name }} </h2>
+                <p class="text-center"> {{ hood.neighbourhood_location }} </p>
+                <p class="text-center"> {{ hood.occupants }} people </p>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" <a class="btn btn-primary" href="#" role="button"></a>View Hood</button>
+                <hr>
+            </div>
+            <div class="col-md-4"><hr></div>
+        
+        
+        </div>
+    </div>
+    {% endfor %}
 </body>
 </html>
 
