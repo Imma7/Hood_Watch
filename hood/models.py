@@ -24,6 +24,11 @@ class NeighbourHood(models.Model):
         specific_hood = cls.objects.filter(id = neighbourhood_id)
         return specific_hood
 
+    @classmethod
+    def search_by_hood_name(cls, search_term):
+        hood_search = cls.objects.filter(neighbourhood_name__icontains=search_term)
+        return hood_search
+
 class Profile(models.Model):
     username = models.CharField(max_length = 50, null=True, blank=False)
     email = models.EmailField(max_length=100, null=True, blank=False)
