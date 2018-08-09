@@ -79,8 +79,13 @@ class Post(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     content = models.TextField(max_length=200, blank=True, null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True, related_name='posted_by')
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='posts_for')
+    neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='posts_for')
 
     
     def __str__(self):
         return self.title
+
+    @classmethod
+    def all_posts(cls):
+        posts = cls.objects.all()
+        return posts
