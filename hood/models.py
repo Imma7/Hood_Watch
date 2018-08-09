@@ -46,8 +46,6 @@ class NeighbourHood(models.Model):
         return businesses
 
 
- 
-
 class Profile(models.Model):
     username = models.CharField(max_length = 50, null=True, blank=False)
     email = models.EmailField(max_length=100, null=True, blank=False)
@@ -57,7 +55,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username or 'No name'
-
 
 
 class Business(models.Model):
@@ -78,4 +75,12 @@ class Business(models.Model):
         return all_biz
 
 
+class Post(models.Model):
+    title = models.CharField(max_length=200, blank=True, null=True)
+    content = models.TextField(max_length=200, blank=True, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True, related_name='posted_by')
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='posts_for')
 
+    
+    def __str__(self):
+        return self.title
