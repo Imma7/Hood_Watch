@@ -14,23 +14,26 @@
 </head>
 <body class="index">
     <p class="text-center" style="color:red;"> ** Update profile to allow posting of new business ** </p>
-    {% for hood in hoods %}
+    
     <div class="container">
         
         <div class="row">
-            <div class="col-md-4"></div>
+            
+            <div class="col-md-4"> </div>
             <div class="col-md-4">
+                {% for hood in hoods %}
                 <h2 class="text-center"> {{ hood.neighbourhood_name }} </h2>
                 <p class="text-center"> {{ hood.neighbourhood_location }} </p>
                 <p class="text-center"> {{ hood.occupants }} people </p>
                 <a href="{% url 'business' hood_id=hood.id %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >View Hood</button></a>
                 <hr>
+                {% endfor %}
             </div>
             <div class="col-md-4"> </div>
         
         </div>
     </div>
-    {% endfor %}
+    
 </body>
 </html>
 
