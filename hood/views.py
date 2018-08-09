@@ -56,10 +56,23 @@ def new_biz(request):
             print('valid')
             nusu=form.save(commit=False)
             nusu.user = current_user
-            nusu.neighbourhood = current_user.profile.neighbourhood
+            nusu.neighbourhood = current_user.profile_for
             nusu.save()
             redirect('index')
     else:
         form = BusinessForm()
     return render(request, "new_biz.html", {"form":form})
 
+def new_profile(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+            return redirect('index')
+    else:
+        form = NewProfileForm()
+    return render(request, 'new_profile.html', {"form": form})
