@@ -20,11 +20,20 @@
                 <h2 class="text-center"> {{ hood.neighbourhood_name }} </h2>
                 <p class="text-center"> {{ hood.neighbourhood_location }} </p>
                 <p class="text-center"> {{ hood.occupants }} people </p>
-                <button type="button" class="btn btn-secondary btn-lg btn-block" <a class="btn btn-primary" href="#" role="button"></a>View Hood</button>
+                <a href="{% url 'business' hood_id=hood.id %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >View Hood</button></a>
+                <hr>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" data-target="#demo">View Hood</button>
+                <div id="demo" class="collapse in">
+
+                    <h4> {{ b.business_name }} </h4>
+                        
+                    
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    
+                </div>
                 <hr>
             </div>
-            <div class="col-md-4"><hr></div>
-        
+            <div class="col-md-4"></div>
         
         </div>
     </div>
