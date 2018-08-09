@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from .forms import NeighbourHoodForm, BusinessForm
+from .forms import NeighbourHoodForm, BusinessForm, NewProfileForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -67,7 +67,7 @@ def new_profile(request):
     current_user = request.user
 
     if request.method == 'POST':
-        form = NewProfileForm(request.POST, request.FILES)
+        form = NewProfileForm(request.POST, request.FILES, instance = current_user.profile_for)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = current_user

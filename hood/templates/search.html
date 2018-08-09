@@ -2,7 +2,6 @@
 
 {% block content %}
 {{block.super}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,24 +10,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-    {% for hood in hoods %}
+    {% for business in businesses %}
     <div class="container">
         
         <div class="row">
             <div class="col-md-4"><hr></div>
             <div class="col-md-4">
-                <h2 class="text-center"> {{ hood.neighbourhood_name }} </h2>
-                <p class="text-center"> {{ hood.neighbourhood_location }} </p>
-                <p class="text-center"> {{ hood.occupants }} people </p>
-                <a href="{% url 'business' hood_id=hood.id %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >View Hood</button></a>
-                <hr>
+                <h2 class="text-center"> {{ business.neighbourhood_name }} </h2>
+                
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4"><hr></div>
+        
         
         </div>
     </div>
     {% endfor %}
 </body>
 </html>
-
 {% endblock %}

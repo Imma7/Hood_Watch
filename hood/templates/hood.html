@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <div class="container-fluid">
+
+        
+        <div class="row">
+            {% for hood in hoods %}
+            <h2 class="text-center"> {{ hood.neighbourhood_name }} </h2>
+            {% endfor %}
+
+            <div class="col-md-8" style="border-right-style: solid;">
+                <h2 class="text-center"> BUSINESS </h2>
+
+                {% for b in bs %}
+                
+            
+                <br>
+                <h4> {{ b.business_name }} </h4>
+                <p> {{ b.business_email }} </p>
+                <hr style="border-bottom-style: solid; border-color:black;">
+  
+                {% endfor %}
+                <a href="{% url 'new_biz' %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >New Business</button></a>
+
+            </div>
+            <div class="col-md-4" style="border-left-style: solid; border-color:black;">
+                
+
+            </div>
+
+        </div>
+        
+    </div>
+    
+</body>
+</html>
+{% endblock %}
