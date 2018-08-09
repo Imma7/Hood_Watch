@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime as dt
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class NeighbourHood(models.Model):
@@ -20,14 +21,18 @@ class NeighbourHood(models.Model):
         return all_hoods
 
     @classmethod
-    def specific_neighbourhood(cls, neighbourhood_id):
-        specific_hood = cls.objects.filter(id = neighbourhood_id)
+    def specific_neighbourhood(cls, id):
+        specific_hood = cls.objects.get(id = id)
         return specific_hood
 
+
     @classmethod
-    def search_by_hood_name(cls, search_term):
-        hood_search = cls.objects.filter(neighbourhood_name__icontains=search_term)
-        return hood_search
+    def search_business(cls, search_term):
+        businesses = cls.objects.filter(neighbourhood_name__icontains=search_term)
+        return businesses
+
+
+ 
 
 class Profile(models.Model):
     username = models.CharField(max_length = 50, null=True, blank=False)
@@ -47,10 +52,16 @@ class Business(models.Model):
     user = models.ForeignKey(User)
     neighbourhood = models.ForeignKey(NeighbourHood)
 
+    def get_absolute_url(self):
+        return reverse("model_detail", kwargs={"pk": self.pk})
+    
     def __str__(self):
         return self.business_name
 
-
+    @classmethod
+    def all_businesses(cls):
+        all_biz = cls.objects.all()
+        return all_biz
 
 
 
