@@ -4,6 +4,20 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime as dt
 from django.core.urlresolvers import reverse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile_for.save()
+
 
 # Create your models here.
 class NeighbourHood(models.Model):
@@ -38,11 +52,11 @@ class Profile(models.Model):
     username = models.CharField(max_length = 50, null=True, blank=False)
     email = models.EmailField(max_length=100, null=True, blank=False)
     neighbourhood = models.ForeignKey(NeighbourHood, null=True, blank=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE ,related_name='profile_for') 
+    user = models.OneToOneField(User, on_delete=models.CASCADE ,related_name='profile_for') 
 
 
     def __str__(self):
-        return self.username
+        return self.username or 'No name'
 
 
 
