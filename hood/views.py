@@ -24,10 +24,10 @@ def hood(request, id):
     hoods = NeighbourHood.objects.get(id=id)
     return render(request, 'hood.html', locals())
 
-def business(request, neighbourhood_id):
+def business(request, hood_id):
     date = dt.date.today()
     print(date)
-    bs = Business.objects.get(neighbourhood_id=neighbourhood_id)
+    bs = Business.objects.filter(neighbourhood_id=hood_id)
     print(bs)
     return render(request, 'hood.html', locals())
 
@@ -41,3 +41,19 @@ def search_results(request):
   else:
     message = "You haven't searched for any term"
     return render(request, 'search.html', {"message": message})
+
+def new_biz(request):
+    current_user = request.user
+    if request.method == 'POST':
+        print(1)
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('valid')
+            nusu=form.save(commit=False)
+            nusu.user = current_user
+            nusu.neighbourhood = current_user.profile.neighbourhood
+            nusu.save()
+            redirect('index')
+    else:
+        form = BusinessForm()
+    return render(request, "new_biz.html", {"form":form})
