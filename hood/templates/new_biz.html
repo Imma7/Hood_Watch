@@ -18,9 +18,12 @@
 
 </head>
 
-<body style="padding:20px;">
+<body>
+    <div class="card-header; text-center">
+      <h2><strong> NEW BUSINESS </strong></h2>
+    </div>
 
-  <form  action="{%url 'new_biz' %}" method="post" enctype="multipart/form-data">
+  <form  action="{%url 'new_biz' %}" method="post" enctype="multipart/form-data" style="padding:20px;">
     {%csrf_token%}
 
     {% bootstrap_form form%}
