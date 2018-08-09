@@ -58,7 +58,7 @@ def new_biz(request):
             nusu.user = current_user
             nusu.neighbourhood = current_user.profile_for.neighbourhood
             nusu.save()
-            redirect('index')
+            return redirect('index')
     else:
         form = BusinessForm()
     return render(request, "new_biz.html", {"form":form})
@@ -76,3 +76,8 @@ def new_profile(request):
     else:
         form = NewProfileForm()
     return render(request, 'new_profile.html', {"form": form})
+
+
+def biz_in_hood(request, neighbourhood_id):
+    bizs = Business.objects.filter(neighbourhood_id=neighbourhood_id)
+    return render(request, 'hood.html', locals())
