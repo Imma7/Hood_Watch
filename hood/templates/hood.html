@@ -42,7 +42,13 @@
             <div class="col-md-4" style="border-left-style: solid; border-color:black;">
                 <h2 class="text-center"> POST </h2>
                 <br>
+                <a href="{% url 'new-post' %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >New Post</button></a>
 
+                {% for post in posts %}
+                <p>{{ post.title }}</p>
+                <p>{{ post.content }}</p>
+                <small>{{post.neighbourhood.neighbourhood_name}}</small>
+                {% endfor %}
             </div>
 
         </div>
