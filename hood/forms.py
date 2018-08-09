@@ -12,9 +12,9 @@ class BusinessForm(forms.ModelForm):
     
 
 class NeighbourHoodForm(forms.Form):
-    neighbourhood_name = forms.CharField(label='Neighbourhood Name', max_length = 50)
-    neighbourhood_location = forms.CharField(label='Location', max_length = 50)
-    occupants = forms.IntegerField(label='Occupants')
+    class Meta:
+        model = NeighbourHood
+        exclude = ['occupants']
 
 class NewProfileForm(forms.ModelForm):
     class Meta:
