@@ -56,7 +56,7 @@ def new_biz(request):
             print('valid')
             nusu=form.save(commit=False)
             nusu.user = current_user
-            nusu.neighbourhood = current_user.profile_for
+            nusu.neighbourhood = current_user.profile_for.neighbourhood
             nusu.save()
             redirect('index')
     else:
