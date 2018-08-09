@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 import datetime as dt
 from .models import NeighbourHood, Profile, Business
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
