@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from .forms import NeighbourHoodForm, BusinessForm, NewProfileForm
+from .forms import NeighbourHoodForm, BusinessForm, NewProfileForm, NewPostForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -95,3 +95,7 @@ def new_post(request):
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
+
+def post(request, post_id):
+    posts = Business.objects.filter(neighbourhood_id=post_id)
+    return render(request, 'hood.html', locals())
