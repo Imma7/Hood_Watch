@@ -15,16 +15,19 @@ from .models import NeighbourHood, Profile, Business
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def index(request):
     date = dt.date.today()
     hoods = NeighbourHood.all_neighbourhoods()
     return render(request, 'index.html', locals())
 
+@login_required(login_url='/accounts/login/')
 def hood(request, id):
     date = dt.date.today()
     hoods = NeighbourHood.objects.get(id=id)
     return render(request, 'hood.html', locals())
 
+@login_required(login_url='/accounts/login/')
 def business(request, hood_id):
     date = dt.date.today()
     print(date)
@@ -32,7 +35,7 @@ def business(request, hood_id):
     print(bs)
     return render(request, 'hood.html', locals())
 
-
+@login_required(login_url='/accounts/login/')
 def search_results(request):
   if 'hood' in request.GET and request.GET["hood"]:
     search_term = request.GET.get("hood")
@@ -43,6 +46,7 @@ def search_results(request):
     message = "You haven't searched for any term"
     return render(request, 'search.html', {"message": message})
 
+@login_required(login_url='/accounts/login/')
 def new_biz(request):
     current_user = request.user
     if request.method == 'POST':
@@ -58,3 +62,4 @@ def new_biz(request):
     else:
         form = BusinessForm()
     return render(request, "new_biz.html", {"form":form})
+
